@@ -40,7 +40,7 @@ Set OutApp = CreateObject("Outlook.Application")
 Set objOutlookMsg = OutApp.CreateItem(olMailItem)
 
 
-strFile = "C:\temp\SD Availability Results.xlsm"
+strFile = "C:\temp\name_of_file.xlsm"
 ActiveWorkbook.SaveAs strFile
 
 Set Recipients = objOutlookMsg.Recipients
