@@ -1,4 +1,5 @@
 ## Get distance in km between 2 addresses using Google Maps
+## https://developers.google.com/maps/documentation/distance-matrix/intro#traffic-model provides several optional parameters that can be added to the funciton. 
 
 Function Get_Distance(Origin As String, Destination As String) As Double
 
