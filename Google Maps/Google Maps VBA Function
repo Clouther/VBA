@@ -3,7 +3,7 @@
 
 Function Get_Distance(Origin As String, Destination As String) As Double
 
-Dim myRequest As XMLHTTP60                                       'Requires a reference to Microsoft XML, v6.0, Scripting Library
+Dim myRequest As XMLHTTP60                                       'Requires a reference to Microsoft XML, v6.0, Scripting Library, and Scripting Runtime
 Dim JSON As Object
 Dim Distance As Long
 
@@ -26,7 +26,7 @@ End Function
 
 Function Get_Duration(Origin As String, Destination As String) As Double
 
-Dim myRequest As XMLHTTP60                                       'Requires a reference to Microsoft XML, v6.0, Scripting Library
+Dim myRequest As XMLHTTP60                                       'Requires a reference to Microsoft XML, v6.0, Scripting Library, and Scripting Runtime
 Dim JSON As Object
 Dim Distance As Long
 
