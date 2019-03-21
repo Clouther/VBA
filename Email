@@ -1,6 +1,6 @@
-## Sending an email in VBA
+## Sending an email in VBA ##
 
-## Method 1 - (Sending a portion of the worksheet)
+## Method 1 - (Sending a portion of the worksheet) ##
 
 Sub Mail_Method1()
 Dim EmailTo As String
