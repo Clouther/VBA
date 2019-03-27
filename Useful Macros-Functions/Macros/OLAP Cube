@@ -1,0 +1,15 @@
+## Updating OLAP cubes based on Dates in a specified range
+
+Sub UpdateOLAPcube()
+
+ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _     
+"[dim DateTime].[Year-Week-Day].[Calendar Year]").VisibleItemsList = Array("")            'Alter based on criteria, in this case it was for filtering dates
+
+ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _
+        "[dim DateTime].[Year-Week-Day].[Calendar Week]").VisibleItemsList = Array( _
+        "[dim DateTime].[Year-Week-Day].[Calendar Week].&[2018]&[" & Range("Q4").Value & "]", _
+        "[dim DateTime].[Year-Week-Day].[Calendar Week].&[2018]&[" & Range("Q5").Value & "]", _
+        "[dim DateTime].[Year-Week-Day].[Calendar Week].&[2018]&[" & Range("Q6").Value & "]")      'Date ranges are in Q4,Q5,Q5. These dates are being selected in the OLAP cube
+Cells(1, 1).Select     'Selecting nothing 
+
+End Sub
