@@ -1,0 +1,32 @@
+## Selecting Tabular data using VBA ( References : Microsoft HTML Object Library, Microsoft Internet Controls)
+
+    Dim IE As New InternetExplorer, html As HTMLDocument
+    Dim post, elem, trow As Object
+    Dim c, r As Integer
+    Dim Today As Date
+    Dim ws As Worksheet
+
+    Today = Date
+    
+    Range("A2:Z100").ClearContents
+    
+    With IE
+        .Visible = False
+        .navigate "http://rrt2.int.bell.ca/WFM_Adhoc_Engine/?rep=79&isAL=-1&isPL=1&isPossiblePL=-1&Prov=QUEBEC&sdate=" & Today & "&endDate=" & Today & "&luminexxiel=sugoi&Channel=2;3"
+        While .readyState < 4: DoEvents: Wend
+        Set html = .document
+    End With
+
+    Application.Wait Now + TimeValue("00:00:05") 'this is the trick here to get the data
+
+    Set post = html.getElementById("TablixMainTable")
+
+    For Each elem In post.Rows
+        For Each trow In elem.Cells
+            c = c + 1: Worksheets("PL_Data").Cells(r + 2, c) = trow.innerText
+        Next trow
+        c = 0
+        r = r + 1
+    Next elem
+    IE.Quit
+    
