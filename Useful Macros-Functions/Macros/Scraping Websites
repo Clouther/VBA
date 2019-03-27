@@ -1,29 +1,30 @@
 ## Selecting Tabular data using VBA ( References : Microsoft HTML Object Library, Microsoft Internet Controls)
+# https://stackoverflow.com/questions/48132461/extract-javascript-table-that-is-hidden-on-page-source-via-vba
 
     Dim IE As New InternetExplorer, html As HTMLDocument
     Dim post, elem, trow As Object
     Dim c, r As Integer
     Dim Today As Date
-    Dim ws As Worksheet
 
     Today = Date
     
-    Range("A2:Z100").ClearContents
+    Sheets("Your Worksheet").Select                                     'Selecting Sheet for data
+    Range("A2:Z100").ClearContents                              'Clearing contents
     
     With IE
-        .Visible = False
-        .navigate "http://rrt2.int.bell.ca/WFM_Adhoc_Engine/?rep=79&isAL=-1&isPL=1&isPossiblePL=-1&Prov=QUEBEC&sdate=" & Today & "&endDate=" & Today & "&luminexxiel=sugoi&Channel=2;3"
+        .Visible = False                                        'Going to website 
+        .navigate "Your Site Goes Here"
         While .readyState < 4: DoEvents: Wend
         Set html = .document
     End With
 
-    Application.Wait Now + TimeValue("00:00:05") 'this is the trick here to get the data
+    Application.Wait Now + TimeValue("00:00:05")                'Setting a delay for data to populate
 
-    Set post = html.getElementById("TablixMainTable")
+    Set post = html.getElementById("Your Table Name")           'Set the name of the table you are trying to get
 
     For Each elem In post.Rows
         For Each trow In elem.Cells
-            c = c + 1: Worksheets("PL_Data").Cells(r + 2, c) = trow.innerText
+            c = c + 1: Worksheets("Your Worksheet").Cells(r + 2, c) = trow.innerText        'Populating Sheet with data from table
         Next trow
         c = 0
         r = r + 1
