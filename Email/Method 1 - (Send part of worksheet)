@@ -1,0 +1,23 @@
+# Sending an email in VBA
+
+## Method 1 - (Sending a portion of the worksheet) ##
+
+Sub Mail_Method1()
+Dim EmailTo As String
+Dim Rng As Range
+Dim Email_Range As Range
+
+Set Rng = Sheets("Email Out").Range("A1:K90")            'Select the excel worksheet and range that you want to send
+ActiveWorkbook.EnvelopeVisible = True
+
+Set Email_Range = Worksheets("Email").Range("A1:A84")    'Select the range of email addresses, I save the information in the Email List tab
+
+EmailTo = Join(Application.Transpose(Email_Range.Value), ";")  'Selecting Range of email addresses to include on Email
+ 
+With ActiveSheet.MailEnvelope
+    .Introduction = "Good afternoon," & Chr(10) & Chr(10) & "Here are the updated results of the day." & Chr(10) & Chr(10)
+    .Item.to = EmailTo
+    .Item.Subject = "The Results for  " & Format(Date, "dd/mmm/yy")
+    .Item.Send
+End With
+End Sub
