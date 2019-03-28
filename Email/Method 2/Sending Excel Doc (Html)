@@ -1,0 +1,96 @@
+## Method 2 - (Sending the file and a table) 
+
+Sub Mail_Method2()
+Dim strFile As String
+Dim OutApp As Outlook.Application
+Dim objOutlookMsg As Outlook.MailItem
+Dim objOutlookRecip As Recipient
+Dim Recipients As Recipients
+Dim rng As Range
+Dim htmlstring As String
+
+
+Set OutApp = CreateObject("Outlook.Application")
+Set objOutlookMsg = OutApp.CreateItem(olMailItem)
+
+
+strFile = "C:\temp\name_of_file.xlsm"
+ActiveWorkbook.SaveAs strFile
+
+Set Recipients = objOutlookMsg.Recipients
+Set objOutlookRecip = Recipients.Add("myemail@gmail.com")   'add in your list of emails
+objOutlookRecip.Type = 1
+
+
+Set rng = Sheets("Comments").Range("S2:Z8").SpecialCells(xlCellTypeVisible)    'Set the range that you want to include in email
+htmlstring = RangetoHTML(rng)  'Converts the range to html to include in email, you will need a new module with the function (Ron de Bruin)
+
+With objOutlookMsg
+    .Subject = "Testing this macro"
+    .HTMLBody = htmlstring
+    For Each objOutlookRecip In objOutlookMsg.Recipients
+      objOutlookRecip.Resolve
+    Next
+    .Attachments.Add strFile
+    .display
+  End With
+
+  'objOutlookMsg.Send
+  Set OutApp = Nothing
+End Sub
+
+Create a new Module (not named RangetoHTML) with the following code (Created by Ron de Bruin):
+
+Function RangetoHTML(rng As Range)
+' Changed by Ron de Bruin 28-Oct-2006
+' Working in Office 2000-2016
+    Dim fso As Object
+    Dim ts As Object
+    Dim TempFile As String
+    Dim TempWB As Workbook
+
+    TempFile = Environ$("temp") & "\" & Format(Now, "dd-mm-yy h-mm-ss") & ".htm"
+
+    'Copy the range and create a new workbook to past the data in
+    rng.Copy
+    Set TempWB = Workbooks.Add(1)
+    With TempWB.Sheets(1)
+        .Cells(1).PasteSpecial Paste:=8
+        .Cells(1).PasteSpecial xlPasteValues, , False, False
+        .Cells(1).PasteSpecial xlPasteFormats, , False, False
+        .Cells(1).Select
+        Application.CutCopyMode = False
+        On Error Resume Next
+        .DrawingObjects.Visible = True
+        .DrawingObjects.Delete
+        On Error GoTo 0
+    End With
+
+    'Publish the sheet to a htm file
+    With TempWB.PublishObjects.Add( _
+         SourceType:=xlSourceRange, _
+         Filename:=TempFile, _
+         Sheet:=TempWB.Sheets(1).Name, _
+         Source:=TempWB.Sheets(1).UsedRange.Address, _
+         HtmlType:=xlHtmlStatic)
+        .Publish (True)
+    End With
+
+    'Read all data from the htm file into RangetoHTML
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set ts = fso.GetFile(TempFile).OpenAsTextStream(1, -2)
+    RangetoHTML = ts.readall
+    ts.Close
+    RangetoHTML = Replace(RangetoHTML, "align=center x:publishsource=", _
+                          "align=left x:publishsource=")
+
+    'Close TempWB
+    TempWB.Close savechanges:=False
+
+    'Delete the htm file we used in this function
+    Kill TempFile
+
+    Set ts = Nothing
+    Set fso = Nothing
+    Set TempWB = Nothing
+End Function
