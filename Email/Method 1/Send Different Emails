@@ -1,0 +1,24 @@
+## Method 3 - (Variant on Method 1 where you send different emails based on the name found in a range)
+
+Sub Mail_Method3()
+Dim EmailTo As String
+Dim Rng As Range
+
+Set Rng = Sheets("Email").Range("A1:A2")       'Range of the name of people you want to send the email to
+
+For Each Cell In Rng                           
+    Cell.Copy
+    ActiveSheet.Paste Destination:=Worksheets("Email Out").Range("A1")       'Copying each name in email to a specific cell, which prompts my email Range to change based on Index and Offset functions
+    Sheets("Email Out").Range("A2:D8").Select
+    ActiveWorkbook.EnvelopeVisible = True
+    EmailTo = Cell  'Selecting the email I want to send it to
+ 
+    With ActiveSheet.MailEnvelope
+        .Introduction = "Good afternoon," & Chr(10) & Chr(10) & "Here are your results" & Chr(10) & Chr(10)
+        .Item.to = EmailTo
+        .Item.Subject = "The Results for  " & Format(Date, "dd/mmm/yy")
+        .Item.Send
+    End With
+Next Cell  
+    
+End Sub
