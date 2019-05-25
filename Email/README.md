@@ -1,7 +1,6 @@
 ## Email Macros for VBA
 
-One Paragraph of project description goes here
-Getting Started
+There are 2 different types of excel macros provided that will allow the user to send out emails via outlook
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 Prerequisites
@@ -38,11 +37,11 @@ Explain what these tests test and why
 
 Give an example
 
-# License
+## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
-# Acknowledgments
+## Acknowledgments
   
     Ron de Bruin with the helpful code and excel automation master:
     https://www.rondebruin.nl/win/s1/outlook/mail.htm
