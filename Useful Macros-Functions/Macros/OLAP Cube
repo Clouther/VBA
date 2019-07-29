@@ -19,12 +19,13 @@ End Sub
 Sub UpdateOLAPcube2()
 
 ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _     
-"[dim DateTime].[Year-Week-Day].[date]").ClearAllFilters                                  'Clear All Filters
+"[dim DateTime].[Year-Week-Day].[date]").ClearAllFilters                                           'Clear All Filters
 
+'Filtering Pivot table by cell ranges
 ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _
         "[dim DateTime].[Year-Week-Day].[date]").PivotFilters.Add Type:=xlCaptionIsBetween, Value1:=Range("P1").Value, Value2:=Range("P3").Value
         
-Cells(1, 1).Select     'Selecting nothing 
+Cells(1, 1).Select                                                                                  'Selecting nothing 
 
 End Sub
 
