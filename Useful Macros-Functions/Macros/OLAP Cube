@@ -1,9 +1,9 @@
-## Updating OLAP cubes based on Dates in a specified range
+'' Updating OLAP cubes based on Dates in a specified range
 
 Sub UpdateOLAPcube()
 
 ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _     
-"[dim DateTime].[Year-Week-Day].[Calendar Year]").VisibleItemsList = Array("")            'Alter based on criteria, in this case it was for filtering dates
+"[dim DateTime].[Year-Week-Day].[Calendar Year]").VisibleItemsList = Array("")                     'Alter based on criteria, in this case it was for filtering dates
 
 ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _
         "[dim DateTime].[Year-Week-Day].[Calendar Week]").VisibleItemsList = Array( _
@@ -13,3 +13,18 @@ ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _
 Cells(1, 1).Select     'Selecting nothing 
 
 End Sub
+
+'' Updating OLAP cubes based on Dates on Date Ranges
+
+Sub UpdateOLAPcube2()
+
+ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _     
+"[dim DateTime].[Year-Week-Day].[date]").ClearAllFilters                                  'Clear All Filters
+
+ActiveSheet.PivotTables("Name of Pivot Table").PivotFields( _
+        "[dim DateTime].[Year-Week-Day].[date]").PivotFilters.Add Type:=xlCaptionIsBetween, Value1:=Range("P1").Value, Value2:=Range("P3").Value
+        
+Cells(1, 1).Select     'Selecting nothing 
+
+End Sub
+
