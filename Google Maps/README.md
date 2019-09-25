@@ -43,5 +43,5 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Acknowledgments
   
-    Ron de Bruin with the helpful code and excel automation master:
-    https://www.rondebruin.nl/win/s1/outlook/mail.htm
+Ron de Bruin with the helpful code and excel automation master:
+https://www.rondebruin.nl/win/s1/outlook/mail.htm
