@@ -43,5 +43,5 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Acknowledgments
   
-Google API : https://developers.google.com/maps/documentation/distance-matrix/intro#traffic-model
-
+Google API: https://developers.google.com/maps/documentation/distance-matrix/intro#traffic-model
+Json Parsing Google Maps: https://stackoverflow.com/questions/36020363/google-api-distancematrix-returning-wrong-json-result-in-vba
