@@ -1,13 +1,18 @@
-## Email Macros for VBA
+## Macro to call Google Maps API
 
-There are 2 different types of excel macros provided that will allow the user to send out emails via outlook
+There are two seperate macros:
+1)  Get distance in km between 2 addresses using Google Maps
+2)  Get duration in minutes between 2 addresses using Google Maps
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
 Prerequisites
-
-What things you need to install the software and how to install them
+Requires a reference to Microsoft XML, v6.0, Scripting Library, and Scripting Runtime
+Function : https://gist.github.com/cwg999/51bafc6cc5f28308ca219e0b43b1aff2#file-encodeuricomponent-vb
 
 Give examples
+
+
 
 Installing
 
@@ -45,3 +50,4 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
   
 Google API: https://developers.google.com/maps/documentation/distance-matrix/intro#traffic-model
 Json Parsing Google Maps: https://stackoverflow.com/questions/36020363/google-api-distancematrix-returning-wrong-json-result-in-vba
+EncodeUri Function https://gist.github.com/cwg999/51bafc6cc5f28308ca219e0b43b1aff2#file-encodeuricomponent-vb
