@@ -10,7 +10,7 @@ Prerequisites:
 Requires a reference to Microsoft XML, v6.0, Scripting Library, and Scripting Runtime
 Function: https://gist.github.com/cwg999/51bafc6cc5f28308ca219e0b43b1aff2#file-encodeuricomponent-vb
 Parse Json: https://github.com/VBA-tools/VBA-JSON
-Install both Parse Json and the EncodeUri function in VBI (separate modules)
+Install both Parse Json and the EncodeUri function in VBA
 
 Function Documentation:
 Function 1: Get_Distance(Origin As String, Destination As String)
